@@ -1,16 +1,19 @@
 using System;
+using System.Collections.Generic;
 
 namespace esharp.solidity.transpiler
 {
     public class Lexer
     {
-
-        private readonly string _text;
-
-        public Lexer(String text)
+        public Lexer()
         {
-            _text = text;
         }
-        
+
+        public IList<String> Lex(string source)
+        {
+            // source must be a .sol file
+            List<String> tokens = new List<String>();
+            return tokens;
+        }
     }
 }

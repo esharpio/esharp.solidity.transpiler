@@ -7,9 +7,7 @@ namespace esharp.solidity.transpiler
         Contract,
         Public,
         Private,
-
         LParen,
-
         RParen
     }
 
