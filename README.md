@@ -4,7 +4,8 @@ ESharp transpiler converts eSharp to Solidity
 
 
 ## Greeter.es
-```
+
+```csharp
 using "hardhat/console.es";
 
 public contract Greeter
