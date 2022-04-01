@@ -10,11 +10,12 @@ using "hardhat/console.es";
 
 public contract Greeter
 {
-    private string greeting;
+    public string Greet { get; set; }
     
-    public string greet()
+    public Greeter(string _greeting)
     {
-        return greeting;
+        console.writeline(`Deploying a Greeter with greeting:${_greeting}`");
+        this.Greet = _greeting;
     }
 }
 ```
