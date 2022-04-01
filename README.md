@@ -14,7 +14,7 @@ public contract Greeter
     
     public Greeter(string _greeting)
     {
-        console.writeline(`Deploying a Greeter with greeting:${_greeting}`");
+        console.writeline(`Deploying a Greeter with greeting:${_greeting}`);
         this.Greet = _greeting;
     }
 }
