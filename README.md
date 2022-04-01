@@ -10,7 +10,12 @@ using "hardhat/console.es";
 
 public contract Greeter
 {
-
+    private string greeting;
+    
+    public string greet()
+    {
+        return greeting;
+    }
 }
 ```
 
