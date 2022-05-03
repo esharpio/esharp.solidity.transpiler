@@ -35,7 +35,7 @@ namespace esharp.solidity.transpiler
         {
             foreach (string line in _source)
             {
-                if (line.StartsWith("using")) // && line.EndsWith(";")
+                if (line.StartsWith("using") && line.EndsWith(";"))
                 {
                     string result = line.Replace("using", "import");
                     result = result.Replace(".es", ".sol");
