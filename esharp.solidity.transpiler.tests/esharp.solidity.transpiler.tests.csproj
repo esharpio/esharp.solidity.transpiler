@@ -17,4 +17,10 @@
     <ProjectReference Include="..\esharp.solidity.transpiler\esharp.solidity.transpiler.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Examples\Greeter.es">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
