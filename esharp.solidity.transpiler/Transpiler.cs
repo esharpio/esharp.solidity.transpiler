@@ -30,5 +30,18 @@ namespace esharp.solidity.transpiler
         {
             return "";
         }
+
+        public void TransformImports()
+        {
+            foreach (string line in _source)
+            {
+                if (line.StartsWith("using")) // && line.EndsWith(";")
+                {
+                    string result = line.Replace("using", "import");
+                    result = result.Replace(".es", ".sol");
+                    Lines.Add(result);
+                }
+            }
+        }
     }
 }

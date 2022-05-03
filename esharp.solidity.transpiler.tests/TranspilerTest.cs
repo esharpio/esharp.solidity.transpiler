@@ -7,24 +7,18 @@ namespace esharp.solidity.transpiler.tests
     public class TranspilerTest
     {
         [Fact]
-        public void Should_Lex_Contract()
+        public void Should_Transform_Imports()
         {
             // Arrange
-            string source = "public contract Greeter";
-            Lexer lexer = new Lexer();
-            IList<String> tokens = lexer.Lex(source);
+            string source = @"Examples/Greeter.es";
+            Transpiler transpiler = new Transpiler(source);
 
-            // // Act
-            // var transpiler = new Transpiler();
-            // var result = transpiler.Transpile(source);
+            // Act
+            transpiler.TransformImports();
 
-            // // Assert
-            // Assert.Equal(4, tokens.Count);
-            // Assert.Equal("contract", tokens[0]);
-            // Assert.Equal("test", tokens[1]);
-            // Assert.Equal("{", tokens[2]);
-            // Assert.Equal("}", tokens[3]);
-            // Assert.Equal("", result);
+            // Assert
+            Assert.Equal(1, transpiler.Lines.Count);
+            Assert.Equal(@"import ""hardhat/console.sol"";", transpiler.Lines[0]);
         }
     }
 }
