@@ -1,18 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace esharp.solidity.transpiler
 {
     public class Transpiler
     {
-        public Transpiler()
+        private readonly string[] _source;
+
+        public IList<String> Lines { get; private set; }
+
+        public Transpiler(string source)
         {
-            // todo: set solidity version
+            if (!File.Exists(source))
+            {
+                throw new FileNotFoundException("File not found", source);
+            }
+
+            _source = File.ReadAllLines(source);
+            Lines = new List<String>();
         }
 
-        public string Transpile(string source)
+        public Boolean Transform()
         {
-            // source must be a .sol file
+            return true;
+        }
 
+        public string TransformLicence()
+        {
             return "";
         }
     }
