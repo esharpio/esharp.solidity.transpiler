@@ -4,12 +4,21 @@ using System.IO;
 
 namespace esharp.solidity.transpiler
 {
+    public enum Type {
+        Contract,
+        Interface,
+        Library
+    }
+
     public class Transpiler
     {
         private readonly string _file;
+
         private readonly string[] _source;
 
         public IList<String> Lines { get; private set; }
+
+        public Type Type { get; set; }
 
         public Transpiler(String filePath)
         {
@@ -48,6 +57,7 @@ namespace esharp.solidity.transpiler
 
         public Boolean Transform()
         {
+            this.Type = Type.Contract;
             return true;
         }
 
@@ -74,6 +84,28 @@ namespace esharp.solidity.transpiler
             foreach (string line in _source)
             {
                 if (line.Contains("contract"))
+                {
+                    Lines.Add(line);
+                }
+            }
+        }
+
+        public void TransformInterface()
+        {
+            foreach (string line in _source)
+            {
+                if (line.Contains("interface"))
+                {
+                    Lines.Add(line);
+                }
+            }
+        }
+
+        public void TransformLibrary()
+        {
+            foreach (string line in _source)
+            {
+                if (line.Contains("library"))
                 {
                     Lines.Add(line);
                 }
