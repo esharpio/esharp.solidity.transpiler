@@ -2,17 +2,14 @@ using System;
 
 namespace esharp.solidity.transpiler
 {
-    enum Tokens
+    public enum Tokens
     {
         Contract,
         Public,
         Private,
         LParen,
-        RParen
-    }
-
-    public class Token
-    {
-
+        RParen,
+        LBrace,
+        RBrace
     }
 }
