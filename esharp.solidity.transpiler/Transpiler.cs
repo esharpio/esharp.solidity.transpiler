@@ -85,7 +85,8 @@ namespace esharp.solidity.transpiler
             {
                 if (line.Contains("contract"))
                 {
-                    Lines.Add(line);
+                    Lines.Add("contract {");
+                    Lines.Add("}");
                 }
             }
         }
@@ -115,6 +116,11 @@ namespace esharp.solidity.transpiler
         public void AddLicense()
         {
 
+        }
+
+        public void AddModifier()
+        {
+            // [OnlyOwner]
         }
     }
 }
