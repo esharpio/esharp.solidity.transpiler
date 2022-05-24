@@ -4,11 +4,41 @@ using System.IO;
 
 namespace esharp.solidity.transpiler
 {
+    public enum Type {
+        Contract,
+        Interface,
+        Library
+    }
+
     public class Transpiler
     {
+        private readonly string _file;
+
         private readonly string[] _source;
 
         public IList<String> Lines { get; private set; }
+
+        public Type Type { get; set; }
+
+        public Transpiler(String filePath)
+        {
+            // todo: set solidity version
+            if (File.Exists(filePath))
+            {
+                _file = File.ReadAllText(filePath);
+                var source = new FileInfo(filePath);
+
+                // check source extension is .es
+                if (source.Extension != ".es")
+                {
+                    throw new Exception("Source file must have .es extension");
+                }
+            }
+            else
+            {
+                throw new FileNotFoundException(filePath);
+            }
+        }
 
         public Transpiler(string source, UInt16 solidtyVersion = 8)
         {
@@ -27,6 +57,7 @@ namespace esharp.solidity.transpiler
 
         public Boolean Transform()
         {
+            this.Type = Type.Contract;
             return true;
         }
 
@@ -54,9 +85,42 @@ namespace esharp.solidity.transpiler
             {
                 if (line.Contains("contract"))
                 {
+                    Lines.Add("contract {");
+                    Lines.Add("}");
+                }
+            }
+        }
+
+        public void TransformInterface()
+        {
+            foreach (string line in _source)
+            {
+                if (line.Contains("interface"))
+                {
                     Lines.Add(line);
                 }
             }
+        }
+
+        public void TransformLibrary()
+        {
+            foreach (string line in _source)
+            {
+                if (line.Contains("library"))
+                {
+                    Lines.Add(line);
+                }
+            }
+        }
+
+        public void AddLicense()
+        {
+
+        }
+
+        public void AddModifier()
+        {
+            // [OnlyOwner]
         }
     }
 }
