@@ -52,6 +52,9 @@ namespace esharp.solidity.transpiler
                         case "}":
                             tokens.Add(Tokens.RBrace);
                             break;
+                        case "modifier":
+                            tokens.Add(Tokens.Modifier);
+                            break;
                         default:
                             break;
                     }
@@ -63,12 +66,12 @@ namespace esharp.solidity.transpiler
 
         public void FindFunctions(string source)
         {
-            if (!File.Exists(source))
-            {
-                throw new FileNotFoundException("File not found", source);
-            }
 
-            var lines = File.ReadAllLines(source);
+        }
+
+        public void FindModifiers(List<String> lines)
+        {
+
         }
     }
 }

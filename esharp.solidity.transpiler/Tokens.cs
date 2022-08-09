@@ -10,6 +10,7 @@ namespace esharp.solidity.transpiler
         LParen,
         RParen,
         LBrace,
-        RBrace
+        RBrace,
+        Modifier
     }
 }
