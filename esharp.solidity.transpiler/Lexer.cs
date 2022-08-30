@@ -54,6 +54,9 @@ namespace esharp.solidity.transpiler
                         case "}":
                             tokens.Add(Tokens.RBrace);
                             break;
+                        case "modifier":
+                            tokens.Add(Tokens.Modifier);
+                            break;
                         default:
                             break;
                     }
@@ -94,6 +97,11 @@ namespace esharp.solidity.transpiler
             }
 
             return functions;
+        }
+
+        public void FindModifiers(List<String> lines)
+        {
+
         }
     }
 }
