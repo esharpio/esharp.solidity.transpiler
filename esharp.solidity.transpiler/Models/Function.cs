@@ -8,5 +8,10 @@ namespace esharp.solidity.transpiler.Models
         public string ReturnType { get; set; }
         public string Parameters { get; set; }
         public string Body { get; set; }
+
+        public string ToSolidty()
+        {
+
+        }
     }
 }
