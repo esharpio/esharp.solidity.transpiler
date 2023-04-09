@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using esharp.solidity.transpiler.Models;
 
 namespace esharp.solidity.transpiler
 {
@@ -8,21 +9,22 @@ namespace esharp.solidity.transpiler
     {
         private readonly string _source;
         
-        public Lexer()
+        public Lexer(string source)
         {
+            _source = source;
         }
 
-        public IList<Tokens> Lex(string source)
+        public IList<Tokens> Lex()
         {
             // source must be a .sol file
             List<Tokens> tokens = new List<Tokens>();
 
-            if (!File.Exists(source))
+            if (!File.Exists(_source))
             {
-                throw new FileNotFoundException("File not found", source);
+                throw new FileNotFoundException("File not found", _source);
             }
 
-            var lines = File.ReadAllLines(source);
+            var lines = File.ReadAllLines(_source);
             foreach(string line in lines)
             {
                 string[] words = line.Split(' ');
@@ -64,9 +66,37 @@ namespace esharp.solidity.transpiler
             return tokens;
         }
 
-        public void FindFunctions(string source)
+        public IList<Function> FindFunctions()
         {
+            if (!File.Exists(_source))
+            {
+                throw new FileNotFoundException("File not found", _source);
+            }
 
+            List<Function> functions = new List<Function>();
+
+            String[] lines = File.ReadAllLines(_source);
+
+            for(int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i];
+                if (line.Trim().StartsWith("public"))
+                {
+                    string nextLine = lines[i + 1];
+                    if (nextLine.Trim().StartsWith("{"))
+                    {
+                        Function function = new Function();
+                        function.ReturnType = nextLine.Trim().Split(' ')[1];
+                        function.Name = line.Trim().Split(' ')[2];
+                        
+                        // function.Parameters = nextLine.Trim().Split(' ')[3];
+                        // function.Body = lines[i + 2];
+                        functions.Add(function);
+                    }
+                }
+            }
+
+            return functions;
         }
 
         public void FindModifiers(List<String> lines)

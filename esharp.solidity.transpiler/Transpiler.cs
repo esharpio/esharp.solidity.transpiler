@@ -4,12 +4,6 @@ using System.IO;
 
 namespace esharp.solidity.transpiler
 {
-    public enum Type {
-        Contract,
-        Interface,
-        Library
-    }
-
     public class Transpiler
     {
         private readonly string _file;
@@ -111,6 +105,16 @@ namespace esharp.solidity.transpiler
                     Lines.Add(line);
                 }
             }
+        }
+
+        public void TransformPropertyGetter()
+        {
+            
+        }
+
+        public void TransformFunction(string[] lines)
+        {
+            
         }
 
         public void AddLicense()
