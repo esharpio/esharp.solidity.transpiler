@@ -1,0 +1,10 @@
+// SPDX
+pragma solidity 0.8.9;
+
+contract Example {
+
+    function Foo() public {
+        address[] _items;
+        _items.remove(0);
+    }
+}
