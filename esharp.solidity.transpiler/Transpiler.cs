@@ -6,6 +6,7 @@ namespace esharp.solidity.transpiler
 {
     public class Transpiler
     {
+        private readonly string _filePath;
         private readonly string _file;
 
         private readonly string[] _source;
@@ -16,6 +17,8 @@ namespace esharp.solidity.transpiler
 
         public Transpiler(String filePath)
         {
+            _filePath = filePath;
+            
             // todo: set solidity version
             if (File.Exists(filePath))
             {
@@ -31,6 +34,18 @@ namespace esharp.solidity.transpiler
             else
             {
                 throw new FileNotFoundException(filePath);
+            }
+        }
+
+        public void Load()
+        {
+            _file = File.ReadAllText(filePath);
+            var source = new FileInfo(filePath);
+
+            // check source extension is .es
+            if (source.Extension != ".es")
+            {
+                throw new Exception("Source file must have .es extension");
             }
         }
 
