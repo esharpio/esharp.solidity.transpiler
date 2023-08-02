@@ -1,0 +1,9 @@
+// SPDX
+pragma solidity 0.8.9;
+
+contract Example {
+
+    function Foo() public {
+        fixed a = 2.7 + 3.0;
+    }
+}

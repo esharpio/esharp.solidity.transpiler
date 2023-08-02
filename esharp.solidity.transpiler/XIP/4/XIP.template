@@ -1,0 +1,17 @@
+// SPX
+pragma solidity 0.8.9;
+
+contract XIP4 {
+
+    T[] private _items;
+
+    function removeItem(uint256 index) external {
+        if (index >= _items.length) return;
+
+        for (uint256 i = index; i < _items.length - 1; i++){
+            _items[i] = _items[i+1];
+        }
+
+        _items.pop();
+    }
+}
